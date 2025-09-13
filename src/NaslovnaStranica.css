@@ -1,0 +1,85 @@
+
+.okvir {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff, #eaeaea);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.1) inset;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: 18px;
+  z-index: 1;
+  backdrop-filter: blur(3px);
+}
+
+.uniform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.uniform-grid .namjestaj-karta {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 150px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.uniform-grid .namjestaj-karta:hover {
+  transform: translateY(-4px);
+}
+
+
+.uniform-grid .namjestaj-karta img {
+  width: 150px;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  flex-shrink: 0;
+}
+
+
+.uniform-grid .namjestaj-karta h2 {
+  flex-grow: 1;
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+@media (max-width: 1000px) {
+  .uniform-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .uniform-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .uniform-grid .namjestaj-karta {
+    height: 120px;
+  }
+  
+  .uniform-grid .namjestaj-karta img {
+    width: 120px;
+  }
+}
