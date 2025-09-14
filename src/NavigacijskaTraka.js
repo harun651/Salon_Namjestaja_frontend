@@ -6,15 +6,25 @@ function NavigacijskaTraka({ user, onLogout }) {
   const prethodnoSkrolovanje = useRef(0);
   const navigate = useNavigate();
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     const efekatSkrolovanje = () => {
       const trenutnoSkrolovanje = window.scrollY;
-      postaviVidljivost(trenutnoSkrolovanje < prethodnoSkrolovanje.current 
-      || trenutnoSkrolovanje < 100);
+      postaviVidljivost(
+        trenutnoSkrolovanje < prethodnoSkrolovanje.current || trenutnoSkrolovanje < 100
+      );
       prethodnoSkrolovanje.current = trenutnoSkrolovanje;
     };
     window.addEventListener('scroll', efekatSkrolovanje);
-
     return () => window.removeEventListener('scroll', efekatSkrolovanje);
   }, []);
 
@@ -42,24 +52,24 @@ function NavigacijskaTraka({ user, onLogout }) {
         backdropFilter: 'blur(4px)',
       }}
     >
-
-      <Link to="/" style={{ textDecoration: 'none' }}>
-        <div
-          style={{
-            backgroundColor: 'white',
-            borderRadius: '50%',
-            width: '70px',
-            height: '70px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 0 10px rgba(0, 0, 0, 1)',
-          }}
-        >
-          <img src="/logoDzeneZe.png" alt="logoDzeneZe" style={{ height: '40px' }} />
-        </div>
-      </Link>
-
+      {!isMobile && (
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <div
+            style={{
+              backgroundColor: 'white',
+              borderRadius: '50%',
+              width: '70px',
+              height: '70px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 0 10px rgba(0, 0, 0, 1)',
+            }}
+          >
+            <img src="/logoDzeneZe.png" alt="logoDzeneZe" style={{ height: '40px' }} />
+          </div>
+        </Link>
+      )}
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '25px' }}>
         <StyledLink to="/">Početna</StyledLink>
