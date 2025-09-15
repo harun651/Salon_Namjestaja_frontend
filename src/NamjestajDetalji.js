@@ -6,16 +6,27 @@ function Modal({ children, isOpen, onClose }) {
   if (!isOpen) return null;
   return (
     <div style={{
-      position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-      backgroundColor: 'rgba(0,0,0,0.5)',
-      display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000
+      position: 'fixed',
+      top: 0, left: 0, right: 0, bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000,
+      overflowY: 'auto', // allow vertical scroll if needed
+      padding: '40px 20px' // add spacing around modal
     }}>
       <div style={{
-        background: 'white', padding: 30, borderRadius: 18,
-        maxWidth: '90%', width: 450,
-        boxShadow: '0 10px 30px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.15) inset',
+        background: 'white',
+        padding: '24px 20px',
+        borderRadius: 14,
+        width: '100%',
+        maxWidth: '400px',
+        boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         color: '#333',
+        maxHeight: '100%', // prevent overflow off screen
+        overflowY: 'auto', // scroll inside modal if needed
       }}>
         {children}
         <button
@@ -25,12 +36,12 @@ function Modal({ children, isOpen, onClose }) {
             backgroundColor: '#e00202',
             border: 'none',
             color: 'white',
-            fontWeight: '700',
-            padding: '10px 20px',
-            borderRadius: 12,
+            fontWeight: 700,
+            padding: '10px 16px',
+            borderRadius: 10,
             cursor: 'pointer',
             transition: 'background-color 0.3s ease',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            float: 'right',
           }}
           onMouseOver={e => e.currentTarget.style.backgroundColor = '#b00000'}
           onMouseOut={e => e.currentTarget.style.backgroundColor = '#e00202'}
